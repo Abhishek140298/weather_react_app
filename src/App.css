@@ -1,7 +1,18 @@
 .App {
-  text-align: center;
+
+
+
+display: flex;
+justify-content: center;
+flex-direction: column;
+background-repeat: no-repeat;
+background-size: cover; 
+
 }
 
+.mapContainer{
+  padding: 30px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,6 +22,13 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+label{
+  color: white;
+}
+
+h3,h4,h2,h1{
+  color: white;
 }
 
 .App-header {
@@ -34,5 +52,143 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+.formMainComponent{
+ 
+
+}
+
+
+.buttonDiv{
+  border:none;
+  border-radius:10px
+}
+
+.weatherMainContainer{
+ 
+
+}
+input{
+  border:none;
+  border-radius:10px
+}
+
+.subAppBox{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+@media only screen and (min-width:776px){
+  .App{
+    background-image: url(./assets/images/landscape.jpeg);
+  }
+  .weatherMainContainer{
+   
+    width: 50%;
+    margin: 30px;
+  
+  }
+  .formMainComponent{
+    display: flex;
+    flex-direction: column;
+   
+    width: 40%;
+    margin: 30px;
+    padding: 20px;
+  }
+  .inputBoxContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .buttonDiv{
+    margin-top: 20px;
+    width: 12.4vw;
+    height: 30px;
+    
+  }
+  input{
+    height: 30px;
+  width: 12vw;
+  }
+}
+
+
+@media only screen and (max-width:776px) and (min-width:480){
+  .App{
+    background-image: url(./assets/images/landscape.jpeg);
+   
+  }
+  .subAppBox{
+    display: flex;
+    flex-direction: column;
+  }
+  .weatherMainContainer{
+    width: 100%;
+    padding: 10px;
+
+  }
+  .formMainComponent{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  
+  }
+  .inputBoxContainer{
+    display: flex;
+   
+    
+    
+  }
+  .buttonDiv{
+    margin-top: 20px;
+   min-width: 29%;
+   align-items: center;
+    height: 40px;
+    
+  }
+  input{
+    height: 30px;
+  max-width: 50%;
+  }
+
+
+}
+@media only screen and (max-width: 480px)  {
+  .App{
+    background-image: url(./assets/images/landscape.jpeg);
+ }
+  .inputBoxContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .formMainComponent{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  
+  }
+  input{
+    height: 30px;
+    width: 100%;
+  }
+  .buttonDiv{
+    margin-top: 20px;
+  width: 93vw;
+   align-items: center;
+    height: 30px;
+    
+  }
+  .subAppBox{
+    display: flex;
+    flex-direction: column;
+  }
+  .weatherMainContainer{
+    padding: 20px;
   }
 }

@@ -1,28 +1,99 @@
-import React, { useEffect } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState, Dispatch, SetStateAction } from "react";
+import axios from "axios";
+import { useLocationWeatherDispatch } from "../pages/Admin/actions";
+import { useAppSelector } from "../hooks/useAppSelector";
+import "../App.css";
 
+interface FormSubmissionProps {
+  locationName: string | undefined;
+  longitude: string;
+  latitude: string;
+  setLocationName: Dispatch<SetStateAction<string | undefined>>;
+  setLongitude: Dispatch<SetStateAction<string>>;
+  setLatitude: Dispatch<SetStateAction<string>>;
+}
 
-const FormSubmission:React.FC=()=>{
+const FormSubmission: React.FC<FormSubmissionProps> = ({
+  locationName,
+  longitude,
+  latitude,
+  setLocationName,
+  setLatitude,
+  setLongitude,
+}) => {
+  const dispatcher = useLocationWeatherDispatch();
 
-useEffect(()=>{
-const options={
-    method:'GET',
-    url:"https://nominatim.openstreetmap.org/search",
-    params:{
-        q: "New York",
-        format: 'json',
+  const latLong = useAppSelector((state) => state.appReducer.latLong);
+  useEffect(() => {
+    if (locationName) {
+      dispatcher.fetchLocationLatLong(locationName);
     }
-}
+  }, [locationName]);
 
-const response=axios.request(options)
-console.log("Response",response)
+  useEffect(() => {
+    if (Object.keys(latLong).length > 0) {
+      console.log("JKDJksk   h", longitude, latitude);
 
-},[])
+      setLatitude(latLong?.lat);
+      setLongitude(latLong?.lon);
+    }
+  }, [latLong]);
 
-    return(
-        <div><input type='text'/>
-        <button>Submit</button></div>
-    )
-}
+  useEffect(() => {
+    console.log("JKDJksk", longitude, latitude);
+  }, [longitude, latitude]);
 
-export default FormSubmission
+  const handleSubmit = () => {
+    console.log("Lat lon number", typeof longitude, latitude);
+  };
+
+  const hanleLocationNameChange = (event: any) => {
+    setLocationName(event.target.value);
+  };
+
+  const hanleLocationLatChange = (event: any) => {
+    setLatitude(event.target.value);
+  };
+
+  const hanleLocationLonChange = () => {};
+
+  return (
+    <div className="formMainComponent">
+      <div className="inputBoxContainer">
+        {" "}
+        <div >
+          {" "}
+          <label >Latitude*</label>
+          <br />
+          <input
+            value={latitude}
+            type="text"
+            onChange={hanleLocationLatChange}
+          />
+        </div>
+        <div >
+          {" "}
+          <label >Latitude*</label>
+          <br />
+          <input
+            value={longitude}
+            type="text"
+            onChange={hanleLocationLonChange}
+          />
+        </div>
+        <div>
+          <label>Location Name</label> <br />{" "}
+          <input type="text" onChange={hanleLocationNameChange} />
+        </div>
+      </div>
+      <div>
+        {" "}
+        <button className="buttonDiv" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default FormSubmission;
