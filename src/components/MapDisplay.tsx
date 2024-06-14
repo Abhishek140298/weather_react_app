@@ -1,5 +1,5 @@
 // src/Map.js or src/Map.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -9,6 +9,14 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
+
+interface IMapDisplay {
+  
+  longitude: string | undefined;
+  latitude: string | undefined;
+ 
+}
+
 let DefaultIcon = L.icon({
   iconUrl: markerIcon,
   shadowUrl: markerShadow
@@ -16,19 +24,25 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const MapDisplay = () => {
+const MapDisplay:React.FC<IMapDisplay> = ({
+  longitude,latitude
+}) => {
+
+  console.log("Longitude",latitude,longitude)
+
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={10} style={{width:'100%',height:'100vh'}}>
+  <div className='mapContainer'>
+    <MapContainer center={[Number(latitude),Number(longitude) ]} zoom={10} style={{width:'100%',height:'60vh'}}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={[Number(latitude), Number(longitude)]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
-    </MapContainer>
+    </MapContainer></div>
   );
 };
 

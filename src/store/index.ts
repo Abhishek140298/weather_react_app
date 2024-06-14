@@ -1,7 +1,18 @@
 
-import { applyMiddleware, createStore } from 'redux';
-import { thunk } from 'redux-thunk';
+import { applyMiddleware, createStore,Store } from 'redux';
+import { thunk,ThunkDispatch } from 'redux-thunk';
 import reducer from './rootReducer'
+import { AnyAction } from 'redux';
 
-export const initStore = () => createStore(reducer, {}, applyMiddleware(thunk));
+
+interface AppState {
+    // Define your state structure here
+  }
+  
+  // Define the store type
+  type AppStore = Store<AppState, AnyAction> & {
+    dispatch: ThunkDispatch<AppState, undefined, AnyAction>;
+  };
+
+export const initStore: AppStore  =  createStore(reducer, {}, applyMiddleware(thunk));
 
