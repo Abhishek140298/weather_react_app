@@ -32,7 +32,6 @@ const FormSubmission: React.FC<FormSubmissionProps> = ({
 
   useEffect(() => {
     if (Object.keys(latLong).length > 0) {
-      console.log("JKDJksk   h", longitude, latitude);
 
       setLatitude(latLong?.lat);
       setLongitude(latLong?.lon);
