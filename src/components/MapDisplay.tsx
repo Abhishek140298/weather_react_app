@@ -39,7 +39,7 @@ const MapDisplay:React.FC<IMapDisplay> = ({
       />
       <Marker position={[Number(latitude), Number(longitude)]}>
         <Popup>
-          weather. <br /> 
+          Weather Report <br /> 
         </Popup>
       </Marker>
     </MapContainer></div>
