@@ -82,13 +82,13 @@ const FormSubmission: React.FC<FormSubmissionProps> = ({
         </div>
         <div>
           <label>Location Name</label> <br />{" "}
-          <input type="text" onChange={hanleLocationNameChange} />
+          <input placeholder="Search Location" type="text" onChange={hanleLocationNameChange} />
         </div>
       </div>
       <div>
         {" "}
         <button className="buttonDiv" onClick={handleSubmit}>
-          Submit
+          Know  Weather
         </button>
       </div>
     </div>
